@@ -1,0 +1,101 @@
+﻿<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+</head>
+<div class="row">
+    <h3> Registro </h3>
+</div>
+@using (Html.BeginForm("cookieSave", "Home", FormMethod.Post))
+{
+    <form method="POST">
+        <div class="row row-cols-3">
+            <div class="col">
+                <div class="row">
+                    <label> Nombre </label>
+                </div>
+                <div class="row">
+                    <input class="form-control" type="text" name="nameUser" id="inputName">
+                </div>
+                <div class="row">
+                    <label> Correo electrónico </label>
+                </div>
+                <div class="row">
+                    <input class="form-control" type="text" name="emailUser" id="inputEmail" oninput="checkEmailFormat()">
+                    <span style="display:none; color: red;" id="invalidEmailMessage">Formato de email inválido</span>
+                </div><br />
+                <div class="row">
+                    <label> Fecha de expiración de sesión </label>
+                </div>
+                <div class="row">
+                    <input class="form-control" name="expirationDate" id="inputExpirationDate">
+                </div>
+                <div class="row">
+                    <label>Hora de expiración de sesión </label>
+                </div>
+                <div class="row">
+                    <input class="form-control" name="expirationHour" id="inputExpirationHour">
+                </div>
+            </div>
+        </div><br />
+        <div class="row">
+            <div class="col-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+}
+
+@section Scripts{
+    <script>
+        today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+
+        $('#inputExpirationDate').datepicker({
+            format: 'dd-mm-yyyy',
+            footer: true,
+            modal: true,
+            minDate: today
+        });
+
+        $('#inputExpirationHour').timepicker({
+            format: 'HH:MM'
+        });
+        //Input Nombre [Previene espacios dobles]
+        document.addEventListener('DOMContentLoaded', function () {
+            //Input Nombre
+            var input = document.getElementById('inputName');
+            input.addEventListener('keydown', function (e) {
+                var input = e.target;
+                var val = input.value;
+                var end = input.selectionEnd;
+                if (e.keyCode == 32 && (val[end - 1] == " " || val[end] == " ")) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        });
+        //SOLO LETRAS
+        $(document).ready(function () {
+            $("#inputName").keypress(function (event) {
+                var inputValue = event.charCode;
+                if (!(inputValue >= 65 && inputValue <= 120) && (inputValue != 32 && inputValue != 0)) {
+                    event.preventDefault();
+                }
+            });
+        });
+        //Input email
+        const checkEmailFormat = () =>{
+            let emailText = document.getElementById("inputEmail").value;
+            let _validator = /\S+@("@")\S+\.\S+/;
+            if(_validator.test(emailText) || emailText === ""){
+                document.getElementById("invalidEmailMessage").style.display = 'none';
+                return emailText;
+            }else{
+                document.getElementById("invalidEmailMessage").style.display = 'inline';
+                return null;
+            }
+        };
+
+    </script>
+
+}

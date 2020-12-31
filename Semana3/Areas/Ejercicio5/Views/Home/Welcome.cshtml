@@ -1,0 +1,18 @@
+﻿
+@{
+    var userName = ViewBag.userNameView;
+    var emailUser = ViewBag.emailUserView;
+    var expirationDate = ViewBag.expirationDateView;
+}
+<div class="container">
+    <div class="row">
+        <h3> Bienvenido @userName </h3>        
+    </div>
+    <div>
+        <p>Tu correo es: @emailUser</p>
+        <p>
+            Tu sesión expira el:
+            @expirationDate
+        </p>
+    </div>
+</div>

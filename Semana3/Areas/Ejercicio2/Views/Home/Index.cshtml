@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 id="title">Index Ejercicio 2</h2>
+
+@*@using (Html.BeginForm("pascalPiramid", "Home", FormMethod.Post))
+    {
+        <div class="col-lg-10">
+            <div class="row">
+                <div class="col-4">
+                    <label>Ingrese el número de filas: </label>
+                </div>
+                <div class="col-4">
+                    <input type="text" id="rows" name="rows"/>
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-success" type="submit">Enviar</button>
+                </div>
+            </div>
+        </div>
+    }*@
+<div class="col-md-8" id="formPascal">
+    <div class="row">
+        <label>Ingrese el número de filas: </label>
+        <input type="text" id="rows" /><br>
+        <button onclick="pascal(document.getElementById('rows').value)">Generar</button>
+    </div>
+</div>
+<div class="col-md-8" id="piramid">
+
+</div>
+<script>
+    function pascal(n) {
+        resultado = [[1], [1, 1]];
+        for (let l = 3; l <= n; l++) {
+            resultado.push(
+                [...Array(l)].map((el, i, a) =>
+                    i == 0 || i == a.length - 1 ? 1 : resultado[l - 2][i - 1] + resultado[l - 2][i]
+                )
+            );
+        }
+        $("#title").text("Pirámide de Pascal");
+        resultado.forEach(print);
+
+        function print(item, index) {            
+            
+            @*for (i = 0; i <= (n*3); i++) {
+                $("#piramid").append("<label>&nbsp;</label>");               
+            }*@
+            
+            $("#piramid").append(resultado[index]);
+            @*n--;*@
+            $("#piramid").append("<br>");
+        }
+
+    }
+</script>
+@*resultado = [[1], [1, 1]];
+
+    for (let l = 3; l <= n; l++)
+    {
+        resultado.push(
+
+            [...Array(l)].map((el, i, a) =>
+                i == 0 || i == a.length - 1 ? 1 : resultado[l - 2][i - 1] + resultado[l - 2][i]
+            )
+
+        );
+
+    }*@

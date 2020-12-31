@@ -1,0 +1,202 @@
+﻿@using Semana3.Areas.Ejercicio7.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    bool session = false;
+    string sessionName = Session.Keys[0];
+
+    
+}
+<head>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+          rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.0.0/mdb.min.css"
+          rel="stylesheet" />
+</head>
+<div class="row row-cols-2">
+    <div class="col-6">
+        <h3>Noticias</h3>
+    </div>
+    <div class="col-6">
+        <div class="row row-cols-3">
+            <div class="col-3"></div>
+            <div class="col-6">
+                Preferencias de @sessionName
+            </div>
+            <div class="col-3">
+                @Html.ActionLink("Cerrar Sesion", "LogOut", "Home")
+            </div>
+        </div>
+    </div>
+</div>
+<div class="dropdown-divider"></div>
+<div class="politics row">
+    <div class="row">
+        <h4>Política</h4>
+    </div>
+    <div class="row row-cols-3">
+        <div class="col-4">
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Mario_Fiad_-_Jornada_de_Oncolog%C3%ADa_en_el_Senado%2C_2019.png/800px-Mario_Fiad_-_Jornada_de_Oncolog%C3%ADa_en_el_Senado%2C_2019.png"
+                     class="card-img-top"
+                     alt="..." />
+                <div class="card-body border-secondary shadow-0">
+                    <h5 class="card-title">Aprueban Nueva Ley.</h5>
+                    <p class="card-text">
+                        Se llevó a cabo la asamblea que dictaminó la fecha en la que entra en vigor esta nueva ley.
+                    </p>
+                    <a href="#!" class="btn btn-rounded btn-dark">Ir a la nota completa</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <img src="https://www.bankrate.com/2019/03/22142110/How-to-trade-stocks.jpg"
+                     class="card-img-top"
+                     alt="..." />
+                <div class="card-body border-secondary shadow-0">
+                    <h5 class="card-title">Crecen las Acciones del Mercado Técnológico.</h5>
+                    <p class="card-text">
+                       Esto se debe a los cambios en el marco legal de su compra.
+                    </p>
+                    <a href="#!" class="btn btn-rounded btn-dark">Ir a la nota completa</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <img src="https://elceo.com/wp-content/uploads/2019/11/INE_fotoarteCL.jpg"
+                     class="card-img-top"
+                     alt="..." />
+                <div class="card-body border-secondary shadow-0">
+                    <h5 class="card-title">Nueva Reforma del INE.</h5>
+                    <p class="card-text">
+                        Pues, eso.
+                    </p>
+                    <a href="#!" class="btn btn-rounded btn-dark">Ir a la nota completa</a>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+
+<div class="sports row">
+    <div class="dropdown-divider"></div>
+    <div class="row">
+        <h4>Deportes</h4>
+    </div>
+    <div class="row row-cols-3">
+        <div class="col-4">
+            <div class="card">
+                <img src="https://ep01.epimg.net/deportes/imagenes/2019/07/08/actualidad/1562614592_437764_1562616224_noticia_normal.jpg"
+                     class="card-img-top"
+                     alt="..." />
+                <div class="card-body border-secondary shadow-0">
+                    <h5 class="card-title">Torneo de Esgrima 2020.</h5>
+                    <p class="card-text">
+                        Las naciones se preparan para el próximo torneo.
+                    </p>
+                    <a href="#!" class="btn btn-rounded btn-dark">Ir a la nota completa</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <img src="https://e00-marca.uecdn.es/assets/multimedia/imagenes/2020/12/27/16090695389672.jpg"
+                     class="card-img-top"
+                     alt="..." />
+                <div class="card-body border-secondary shadow-0">
+                    <h5 class="card-title">Red Bull sella contrato con Piloto.</h5>
+                    <p class="card-text">
+                        Después de días de especulación, se confirma.
+                    </p>
+                    <a href="#!" class="btn btn-rounded btn-dark">Ir a la nota completa</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <img src="https://ep01.epimg.net/economia/imagenes/2020/01/16/actualidad/1579196525_489238_1579272049_noticia_normal.jpg"
+                     class="card-img-top"
+                     alt="..." />
+                <div class="card-body border-secondary shadow-0">
+                    <h5 class="card-title">Se continúan posponiendo torneos.</h5>
+                    <p class="card-text">
+                        Las alertas de confinamiento obligan a posponer los eventos de participación en equipos.
+                    </p>
+                    <a href="#!" class="btn btn-rounded btn-dark">Ir a la nota completa</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="cultural row">
+    <div class="dropdown-divider"></div>
+    <div class="row">
+        <h4>Cultura</h4>
+    </div>
+    <div class="row row-cols-3">
+        <div class="col-4">
+            <div class="card">
+                <img src="https://conceptodefinicion.de/wp-content/uploads/2019/08/Cultura-5.jpg"
+                     class="card-img-top"
+                     alt="..." />
+                <div class="card-body border-secondary shadow-0">
+                    <h5 class="card-title">Festival del día de muertos.</h5>
+                    <p class="card-text">
+                        El desfile se llevo a cabo en diferentes partes de la ciudad.
+                    </p>
+                    <a href="#!" class="btn btn-rounded btn-dark">Ir a la nota completa</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <img src="https://dam.ngenespanol.com/wp-content/uploads/2020/05/pinguino-rey.jpg"
+                     class="card-img-top"
+                     alt="..." />
+                <div class="card-body border-secondary shadow-0">
+                    <h5 class="card-title">National Geographic prepara película de pingüinos.</h5>
+                    <p class="card-text">
+                        Después de votaciones de los lectores de la revista, el pingüino fue el elegido.
+                    </p>
+                    <a href="#!" class="btn btn-rounded btn-dark">Ir a la nota completa</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <img src="https://i1.wp.com/qepd.news/wp-content/uploads/2020/01/osn-convocatoria.jpg?fit=600%2C400&ssl=1"
+                     class="card-img-top"
+                     alt="..." />
+                <div class="card-body border-secondary shadow-0">
+                    <h5 class="card-title">Orquesta Sinfónica prepara Concierto en Línea.</h5>
+                    <p class="card-text">
+                        El día de hoy se anunciaron las fechas de transmisión.
+                    </p>
+                    <a href="#!" class="btn btn-rounded btn-dark">Ir a la nota completa</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button onclick="test()">
+    Ocultar
+</button>
+@section Scripts{
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.0.0/mdb.min.js">
+    </script>
+    <script>
+        var test = () => {
+            console.log("Si?");
+            $(".sports").hide();
+        }
+    </script>
+}

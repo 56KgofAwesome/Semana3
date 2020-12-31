@@ -1,0 +1,78 @@
+﻿@using Semana3.Areas.Ejercicio6.Models;
+@{
+    bool session = false;
+    string usernameText;
+    string sessionTime;
+
+    if (Session != null && Session["MySession"] != null)
+    {
+        session = true;
+        Formulario values = (Formulario)Session["MySession"];
+        usernameText = values.username;
+        sessionTime = values.sessionTime.ToString();
+    }
+    else
+    {
+        usernameText = null;
+        sessionTime = null;
+    }
+
+}
+@{
+    if (session)
+    {
+    <div class="container">
+        <div class="row">
+            <h3> Hola, bienvenido @usernameText </h3>
+        </div>
+        <div class="row">
+            <label id="initialTimeLabel">Tu sesión expira en: </label>
+        </div>
+        <div class="row">
+            <p id="timeLeft"><span  id="timer"></span> minutos</p>
+        </div>        
+    </div>
+        <script>
+            var time = @sessionTime;
+
+            function startTimer(duration, display) {
+                var timer = duration, minutes, seconds;
+                setInterval(function () {
+                    minutes = parseInt(timer / 60, 10);
+                    seconds = parseInt(timer % 60, 10);
+
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                    display.textContent = minutes + ":" + seconds;
+
+                    if (--timer < 0) {
+                        timer = duration;
+                    }
+                    if (minutes == 0 && seconds == 0) {
+                        document.getElementById("timeLeft").hidden = true;
+                        location.reload();
+                    }
+                }, 1000);
+            }
+
+            window.onload = function () {
+                var minutes = 60 * time,
+                    display = document.querySelector('#timer');
+                startTimer(minutes, display);
+            };            
+        </script>
+    }
+    else
+    {
+        <div class="container">
+            <div class="row">
+                <p>
+                    No hay sesión iniciada, favor de @Html.ActionLink("registrarse", "SignUp")
+                </p>
+            </div>
+        </div>
+    }
+}
+
+

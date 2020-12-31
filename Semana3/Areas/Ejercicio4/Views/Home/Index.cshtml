@@ -1,0 +1,106 @@
+﻿@model Semana3.Areas.Ejercicio4.Models.ActivityClass
+
+<h2>Agenda de Actividades</h2>
+<br />
+<div>
+    <div class="row row-cols-2">
+        <div class="col-8">
+            <div class="row row-cols-2">
+                <div class="input-group col-6" style="padding-right: 0px;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Buscar por fecha</span>
+                    </div>
+                    <input id="searchDate" type="text" class="form-control" placeholder="dd-mm-yyyy" onkeyup="searchByDate()">
+                </div>
+                <div class="col-2" style="padding-left: 0px;">
+                    <input type="button" class="btn btn-primary" value="Buscar" />
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <input type="button" class="btn btn-primary" value="Agendar nueva actividad" onclick="location.href='@Url.Action("Create", "Home")'" />
+        </div>
+    </div>
+</div><br />
+<div>
+    <div class="row">
+        <table class="table table-bordered table-condensed table-hover table-striped" id="agendaTable">
+            <thead>
+                <tr>
+                    <th>Actividad</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Duración</th>
+                    <th>Notas</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+            type: 'POST',
+            url: '@Url.Action("readFile")',
+                success: function (data) {
+                    //Recorre el array de actividades
+                    data.forEach(function eachActivity(item, index) {
+                        var activityObject = JSON.parse(item);
+                        var tr;
+                        tr = $('<tr/>');
+                        //Recorremos el objeto para agregar a la tabla
+                        Object.entries(activityObject).forEach(entry => {
+                            const [key, value] = entry;
+                            if (key == "activityPeriod") {
+                                if (value == "60")
+                                {
+                                    tr.append("<td>" +"1 Hora" + "</td>")
+                                }else
+                                {
+                                    tr.append("<td>" + value + " Minutos" + "</td>");
+                                }
+                            } else {
+                                tr.append("<td>" + value + "</td>");
+                            }
+                        });
+                        $('table').append(tr);
+                    });
+                }
+            });
+        });
+
+
+
+        $(document).ready(function () {
+            $("#searchDate").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#agendaTable tbody tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+        @*function searchByDate() {
+            var input, filter, table, tr, td, i, txtValue;
+            inputSearch = document.getElementById("searchDate");
+            table = document.getElementById("agendaTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                console.log(td);
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if(txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }*@
+    </script>
+}
+

@@ -1,0 +1,2 @@
+{"activityType":"Reunión","scheduledDate":"15-01-2021","scheduledTime":"1:00 PM","activityPeriod":"30","activityNote":"Agenda de Samuel"}
+{"activityType":"Reunión","scheduledDate":"16-02-2021","scheduledTime":"1:01 PM","activityPeriod":"15","activityNote":"Nota"}

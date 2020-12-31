@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Semana3.Areas.Ejercicio3.Models.Comments>
+
+<p>
+    @Html.ActionLink("Crear comentario", "Create")
+</p>
+<p>Hay: @ViewBag.files archivos</p>
+<p> @ViewBag.fileContent </p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.comment)
+        </th>
+        <th></th>
+    </tr>
+
+    @if (ViewBag.files > 0)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.comment)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    }
+
+
+</table>

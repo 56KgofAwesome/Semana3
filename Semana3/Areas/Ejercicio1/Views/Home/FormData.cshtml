@@ -1,0 +1,54 @@
+﻿@model Semana3.Areas.Ejercicio1.Models.FacturationData
+
+@{
+    ViewBag.Title = "FormData";
+}
+<div class="container body-content">
+    <h2>Fechas de facturación</h2>
+    <div class="col-md-8">
+        <label>Fecha inicial: @ViewBag.initialDateText </label><br />
+        <label>Fecha final: @ViewBag.finalDateText </label><br />
+        <label>Periodicidad: @ViewBag.periodText </label><br />
+        <label>Día de corte: @ViewBag.cutDayText </label><br />
+        <label>Día de impresión: @ViewBag.printDayText </label>
+    </div>
+    <div class="col-lg-12">
+        <div class="row" style="border: 1px solid red">
+            <div class="col-4" style="border: 1px solid green">
+                Fecha inicial
+            </div>
+            <div class="col-4" style="border: 1px solid yellow">
+                Fecha final
+            </div>           
+            <div class="col-4" style="border: 1px solid brown">
+                Fecha de impresión
+            </div>
+        </div>
+        <div class="row" style="border: 1px solid blue">
+            <div class="col-4" style="border: 1px solid orange">
+                @foreach (var initialDate in ViewBag.initialDates)
+                {
+                    <div class="row" style="border: 1px solid red">
+                        @initialDate
+                    </div>
+                }
+            </div>
+            <div class="col-4" style="border: 1px solid orange">
+                @foreach (var finalDate in ViewBag.finalDates)
+                {
+                    <div class="row" style="border: 1px solid red">
+                        @finalDate
+                    </div>
+                }
+            </div>
+            <div class="col-4" style="border: 1px solid orange">
+                @foreach (var printDate in ViewBag.printDays)
+                {
+                    <div class="row" style="border: 1px solid red">
+                        @printDate
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
