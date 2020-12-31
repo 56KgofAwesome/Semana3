@@ -15,7 +15,7 @@ namespace Semana3.Areas.Ejercicio6.Models
         [Required]
         [Display(Name ="Contraseña")]
         [StringLength(20, ErrorMessage = "La {0} debe ser de mínimo {2} caractéres", MinimumLength = 8)]
-        [RegularExpression(@"^.*[a-zA-Z0-9!*@#$&()\\-`.+,\\]{8,}.*$", ErrorMessage = "La {0} debe ser de mínimo 8 caractéres, asegúrate de incluir mayúsculas, números y caractéres")]
+        [RegularExpression(@"(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!*@#$&()\\-`.+,\\])^.{8,}$", ErrorMessage = "La {0} debe ser de mínimo 8 caractéres, asegúrate de incluir mayúsculas, números y caractéres")]
         [DataType(DataType.Password)]
         public string password { get; set; }
 

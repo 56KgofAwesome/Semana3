@@ -1,5 +1,10 @@
 ﻿@model Semana3.Areas.Ejercicio4.Models.ActivityClass
-
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+</head>
 <h2>Agenda de Actividades</h2>
 <br />
 <div>
@@ -7,18 +12,14 @@
         <div class="col-8">
             <div class="row row-cols-2">
                 <div class="input-group col-6" style="padding-right: 0px;">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Buscar por fecha</span>
-                    </div>
-                    <input id="searchDate" type="text" class="form-control" placeholder="dd-mm-yyyy" onkeyup="searchByDate()">
-                </div>
-                <div class="col-2" style="padding-left: 0px;">
-                    <input type="button" class="btn btn-primary" value="Buscar" />
-                </div>
+                    <input id="searchByDate" />
+                    <input type="button" class="btn btn-dark" value="Filtrar" onclick="searchByDate()" />
+                    <input type="button" class="btn btn-dark" value="Limpiar filtro" onclick="clearFilter()" />
+                </div>                
             </div>
         </div>
         <div class="col-4">
-            <input type="button" class="btn btn-primary" value="Agendar nueva actividad" onclick="location.href='@Url.Action("Create", "Home")'" />
+            <input type="button" class="btn btn-dark" value="Agendar nueva actividad" onclick="location.href='@Url.Action("Create", "Home")'" />
         </div>
     </div>
 </div><br />
@@ -40,7 +41,16 @@
 </div>
 @section Scripts{
     <script>
+        //Date Picker
+        $('#searchByDate').datepicker({
+            format: 'dd-mm-yyyy'            
+        });
+        //Tabla de Agenda
         $(document).ready(function () {
+            allRegisterRequest();
+        });
+         //Solicitud de Registros de Agenda
+        function allRegisterRequest() {
             $.ajax({
             type: 'POST',
             url: '@Url.Action("readFile")',
@@ -69,38 +79,72 @@
                     });
                 }
             });
-        });
-
-
-
-        $(document).ready(function () {
-            $("#searchDate").on("keyup", function () {
-                var value = $(this).val().toLowerCase();
-                $("#agendaTable tbody tr").filter(function () {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
+        }
+        //Limpia la tabla
+        function clearTable() {
+            $("#agendaTable tbody tr").filter(function () {
+                $(this).remove()
             });
-        });
-
-        @*function searchByDate() {
-            var input, filter, table, tr, td, i, txtValue;
-            inputSearch = document.getElementById("searchDate");
-            table = document.getElementById("agendaTable");
-            tr = table.getElementsByTagName("tr");
-
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[1];
-                console.log(td);
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if(txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
+        }
+        //Solicitud filtrada
+        function filteredSearch() {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("readFile")',
+                success: function (data) {
+                    //Recorre el Array de actividades
+                    data.forEach(function eachActivity(item, index) {
+                        var activityObject = JSON.parse(item);
+                        var tr;
+                        tr = $('<tr/>');
+                        if (activityObject.scheduledDate == inputSearch) {
+                            clearTable();
+                            //Recorremos el objeto para agregar a la tabla
+                            Object.entries(activityObject).forEach(entry => {
+                                const [key, value] = entry;
+                                if (key == "activityPeriod") {
+                                    if (value == "60") {
+                                        tr.append("<td>" + "1 Hora" + "</td>")
+                                    } else {
+                                        tr.append("<td>" + value + " Minutos" + "</td>");
+                                    }
+                                } else {
+                                    tr.append("<td>" + value + "</td>");
+                                }
+                            });
+                            $('table').append(tr);
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'No tienes actividades agendadas.',
+                            })
+                        }
+                    });
                 }
+            });
+        }
+        //Buscar por fecha
+        function searchByDate(){
+            inputSearch = document.getElementById("searchByDate").value;
+            if (inputSearch == undefined || inputSearch == null || inputSearch == "")
+            {   
+                console.log("No debería buscar nada" + inputSearch);
+                clearTable();
+                allRegisterRequest();
             }
-        }*@
+            else
+            {   
+                console.log("Vamos a buscar");
+                filteredSearch();
+            }
+        }
+        //Limpiar el filtro
+        function clearFilter() {
+            $('#searchByDate').val('');
+            clearTable();
+            allRegisterRequest();
+        }
     </script>
 }
 
