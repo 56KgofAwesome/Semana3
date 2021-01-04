@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Settings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string sessionName = Session.Keys[0];
+    string politics = Request.Cookies[sessionName]["politics"];
+    string sports = Request.Cookies[sessionName]["sports"];
+    string cultural = Request.Cookies[sessionName]["cultural"];
+}
+
+<h2>Preferencias</h2>
+
+<div class="container">
+    @using (Html.BeginForm("ChangeSettings", "Home", FormMethod.Post))
+    {
+        <div class="row">
+            <ul>
+                <li>
+                    @if (politics == "true")
+                    {
+                        <input type="checkbox" id="politics" name="politics" value="true" checked />
+                        <label for="politics"> Política </label>
+                    }
+                    else
+                    {
+                        <input type="checkbox" id="politics" name="politics" value="true" />
+                        <label for="politics"> Política </label>
+                    }
+                </li>
+                <li>
+                    @if (sports == "true")
+                    {
+                        <input type="checkbox" id="sports" name="sports" value="true" checked />
+                        <label for="sports"> Deportes </label>
+                    }
+                    else
+                    {
+                        <input type="checkbox" id="sports" name="sports" value="true" />
+                        <label for="sports"> Deportes </label>
+                    }
+                </li>
+                <li>
+                    @if (cultural == "true")
+                    {
+                        <input type="checkbox" id="cultural" name="cultural" value="true" checked />
+                        <label for="cultural"> Cultura </label>
+                    }
+                    else
+                    {
+                        <input type="checkbox" id="cultural" name="cultural" value="true" />
+                        <label for="cultural"> Cultura </label>
+                    }
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <input type="submit" value="Guardar Preferencias" class="btn btn-dark"/>
+        </div>
+    }
+</div>

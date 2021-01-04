@@ -367,6 +367,7 @@
     <Content Include="Areas\Ejercicio7\Views\Home\Index.cshtml" />
     <Content Include="Areas\Ejercicio7\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Ejercicio7\Views\Home\Login.cshtml" />
+    <Content Include="Areas\Ejercicio7\Views\Home\Settings.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

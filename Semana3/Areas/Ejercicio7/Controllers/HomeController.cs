@@ -15,8 +15,8 @@ namespace Semana3.Areas.Ejercicio7.Controllers
         public ActionResult Index()
         {
             if(Session.Count == 0)
-            {                
-               return RedirectToAction("Login");
+            {               
+                return RedirectToAction("Login");
             }
             
             return View("Index");
@@ -37,8 +37,13 @@ namespace Semana3.Areas.Ejercicio7.Controllers
             if(username != null && username != "")
             {
                 //Creamos la sesión y le asignamos la duración
-                Session[username] = new Usuario() { username = username, password = password };                
-                ViewBag.sessionName = username;
+                Session[username] = new Usuario() { username = username, password = password };
+                //Cookies con sus preferencias por Default                
+                HttpCookie cookies = new HttpCookie(username);
+                cookies["sports"] = "true";
+                cookies["politics"] = "true";
+                cookies["cultural"] = "true";
+                Response.Cookies.Add(cookies);
                 return RedirectToAction("Index");
             }
             else
@@ -51,6 +56,108 @@ namespace Semana3.Areas.Ejercicio7.Controllers
         public ActionResult LogOut()
         {
             Session.Clear();
+            return RedirectToAction("Index");
+        }
+        //Preferencias de Cookies
+        public ActionResult Settings()
+        {            
+            return View();
+        }
+        //Cambia las preferencias de noticias
+        [HttpPost]
+        public ActionResult ChangeSettings()
+        {
+            if (Request.Form["politics"] != null)
+            {
+                if (Request.Form["sports"] != null)
+                {
+                    if (Request.Form["cultural"] != null)
+                    {
+                        username = Session.Keys[0];
+                        HttpCookie cookies = new HttpCookie(username);
+                        cookies["politics"] = "true";
+                        cookies["sports"] = "true";
+                        cookies["cultural"] = "true";
+                        Response.Cookies.Add(cookies);
+                    }
+                    else
+                    {
+                        username = Session.Keys[0];
+                        HttpCookie cookies = new HttpCookie(username);
+                        cookies["politics"] = "true";
+                        cookies["sports"] = "true";
+                        cookies["cultural"] = "false";
+                        Response.Cookies.Add(cookies);
+                    }
+                }
+                else
+                {
+                    if (Request.Form["cultural"] != null)
+                    {
+                        username = Session.Keys[0];
+                        HttpCookie cookies = new HttpCookie(username);
+                        cookies["politics"] = "true";
+                        cookies["sports"] = "false";
+                        cookies["cultural"] = "true";
+                        Response.Cookies.Add(cookies);
+                    }
+                    else
+                    {
+                        username = Session.Keys[0];
+                        HttpCookie cookies = new HttpCookie(username);
+                        cookies["politics"] = "true";
+                        cookies["sports"] = "false";
+                        cookies["cultural"] = "false";
+                        Response.Cookies.Add(cookies);
+                    }
+                }
+            }
+            else
+            {
+                if (Request.Form["sports"] != null)
+                {
+                    if(Request.Form["cultural"] != null)
+                    {
+                        username = Session.Keys[0];
+                        HttpCookie cookies = new HttpCookie(username);
+                        cookies["politics"] = "false";
+                        cookies["sports"] = "true";
+                        cookies["cultural"] = "true";
+                        Response.Cookies.Add(cookies);
+                    }
+                    else
+                    {
+                        username = Session.Keys[0];
+                        HttpCookie cookies = new HttpCookie(username);
+                        cookies["politics"] = "false";
+                        cookies["sports"] = "true";
+                        cookies["cultural"] = "false";
+                        Response.Cookies.Add(cookies);
+                    }
+                }
+                else
+                {
+                    if (Request.Form["cultural"] != null)
+                    {
+                        username = Session.Keys[0];
+                        HttpCookie cookies = new HttpCookie(username);
+                        cookies["politics"] = "false";
+                        cookies["sports"] = "false";
+                        cookies["cultural"] = "true";
+                        Response.Cookies.Add(cookies);
+                    }
+                    else
+                    {
+                        username = Session.Keys[0];
+                        HttpCookie cookies = new HttpCookie(username);
+                        cookies["sports"] = "false";
+                        cookies["politics"] = "false";
+                        cookies["cultural"] = "false";
+                        Response.Cookies.Add(cookies);
+                    }
+                }
+            }
+
             return RedirectToAction("Index");
         }
     }

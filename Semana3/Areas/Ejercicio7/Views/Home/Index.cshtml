@@ -1,11 +1,13 @@
 ﻿@using Semana3.Areas.Ejercicio7.Models;
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    bool session = false;
+    Layout = "~/Views/Shared/_Layout.cshtml";   
     string sessionName = Session.Keys[0];
+    string politics = Request.Cookies[sessionName]["politics"];
+    string sports = Request.Cookies[sessionName]["sports"];
+    string cultural = Request.Cookies[sessionName]["cultural"];
 
-    
+
 }
 <head>
     <!-- Font Awesome -->
@@ -17,6 +19,8 @@
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.0.0/mdb.min.css"
           rel="stylesheet" />
+    <!--SweetAlert-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <div class="row row-cols-2">
     <div class="col-6">
@@ -24,67 +28,71 @@
     </div>
     <div class="col-6">
         <div class="row row-cols-3">
-            <div class="col-3"></div>
-            <div class="col-6">
-                Preferencias de @sessionName
+            <div class="col-6"></div>
+            <div class="col-3">
+                <i class="fas fa-cog"></i>@Html.ActionLink("Preferencias", "Settings", "Home")
             </div>
             <div class="col-3">
-                @Html.ActionLink("Cerrar Sesion", "LogOut", "Home")
+                <i class="fas fa-sign-out-alt"></i>@Html.ActionLink("Salir", "LogOut", "Home")
             </div>
         </div>
     </div>
 </div>
-<div class="dropdown-divider"></div>
-<div class="politics row">
-    <div class="row">
-        <h4>Política</h4>
+@if (politics == "true")
+{
+    <div class="dropdown-divider"></div>
+    <div class="politics row">
+        <div class="row">
+            <h4>Política</h4>
+        </div>
+        <div class="row row-cols-3">
+            <div class="col-4">
+                <div class="card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Mario_Fiad_-_Jornada_de_Oncolog%C3%ADa_en_el_Senado%2C_2019.png/800px-Mario_Fiad_-_Jornada_de_Oncolog%C3%ADa_en_el_Senado%2C_2019.png"
+                         class="card-img-top"
+                         alt="..." />
+                    <div class="card-body border-secondary shadow-0">
+                        <h5 class="card-title">Aprueban Nueva Ley.</h5>
+                        <p class="card-text">
+                            Se llevó a cabo la asamblea que dictaminó la fecha en la que entra en vigor esta nueva ley.
+                        </p>
+                        <a href="#!" class="btn btn-rounded btn-dark">Ir a la nota completa</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <img src="https://www.bankrate.com/2019/03/22142110/How-to-trade-stocks.jpg"
+                         class="card-img-top"
+                         alt="..." />
+                    <div class="card-body border-secondary shadow-0">
+                        <h5 class="card-title">Crecen las Acciones del Mercado Técnológico.</h5>
+                        <p class="card-text">
+                            Esto se debe a los cambios en el marco legal de su compra.
+                        </p>
+                        <a href="#!" class="btn btn-rounded btn-dark">Ir a la nota completa</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <img src="https://elceo.com/wp-content/uploads/2019/11/INE_fotoarteCL.jpg"
+                         class="card-img-top"
+                         alt="..." />
+                    <div class="card-body border-secondary shadow-0">
+                        <h5 class="card-title">Nueva Reforma del INE.</h5>
+                        <p class="card-text">
+                            Pues, eso.
+                        </p>
+                        <a href="#!" class="btn btn-rounded btn-dark">Ir a la nota completa</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="row row-cols-3">
-        <div class="col-4">
-            <div class="card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Mario_Fiad_-_Jornada_de_Oncolog%C3%ADa_en_el_Senado%2C_2019.png/800px-Mario_Fiad_-_Jornada_de_Oncolog%C3%ADa_en_el_Senado%2C_2019.png"
-                     class="card-img-top"
-                     alt="..." />
-                <div class="card-body border-secondary shadow-0">
-                    <h5 class="card-title">Aprueban Nueva Ley.</h5>
-                    <p class="card-text">
-                        Se llevó a cabo la asamblea que dictaminó la fecha en la que entra en vigor esta nueva ley.
-                    </p>
-                    <a href="#!" class="btn btn-rounded btn-dark">Ir a la nota completa</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card">
-                <img src="https://www.bankrate.com/2019/03/22142110/How-to-trade-stocks.jpg"
-                     class="card-img-top"
-                     alt="..." />
-                <div class="card-body border-secondary shadow-0">
-                    <h5 class="card-title">Crecen las Acciones del Mercado Técnológico.</h5>
-                    <p class="card-text">
-                       Esto se debe a los cambios en el marco legal de su compra.
-                    </p>
-                    <a href="#!" class="btn btn-rounded btn-dark">Ir a la nota completa</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card">
-                <img src="https://elceo.com/wp-content/uploads/2019/11/INE_fotoarteCL.jpg"
-                     class="card-img-top"
-                     alt="..." />
-                <div class="card-body border-secondary shadow-0">
-                    <h5 class="card-title">Nueva Reforma del INE.</h5>
-                    <p class="card-text">
-                        Pues, eso.
-                    </p>
-                    <a href="#!" class="btn btn-rounded btn-dark">Ir a la nota completa</a>
-                </div>
-            </div>
-        </div>
-    </div>    
-</div>
-
+}
+@if (sports == "true")
+{
 <div class="sports row">
     <div class="dropdown-divider"></div>
     <div class="row">
@@ -135,7 +143,9 @@
         </div>
     </div>
 </div>
-
+}
+@if (cultural == "true")
+{
 <div class="cultural row">
     <div class="dropdown-divider"></div>
     <div class="row">
@@ -186,9 +196,7 @@
         </div>
     </div>
 </div>
-<button onclick="test()">
-    Ocultar
-</button>
+}
 @section Scripts{
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.0.0/mdb.min.js">
@@ -198,5 +206,6 @@
             console.log("Si?");
             $(".sports").hide();
         }
+
     </script>
 }
