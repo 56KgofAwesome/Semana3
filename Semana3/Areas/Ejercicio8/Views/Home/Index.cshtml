@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string captchaText = ViewBag.captchaText;
+}
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</head>
+<div class="row">
+    <h3>CAPTCHA</h3>
+</div>
+<div class="row">    
+    <div class="col-6" style="border: 1px solid black">
+        <img src='@ViewBag.src' alt="" />        
+    </div>
+    <div class="col-6">
+        @using (Html.BeginForm("FormatCaptcha","Home",FormMethod.Post)) {
+            <div class="row">
+                <label><input type="checkbox" value="true" name="letters" id="lettersCheck" checked/> Letras</label>
+            </div>
+            <div class="row">
+                <label><input type="checkbox" value="true" name="numbers" id="numbersCheck" checked/> Números</label>
+            </div>
+            <div class="row">
+                <input type="submit" class="btn btn-dark" value="Generar" />
+            </div>
+        }
+    </div>
+</div>
+<br />
+<div class="row row-cols-2">
+    <div class="col-10"></div>
+    <div class="input-group">
+        <input id="userText" type="text" class="form-control" placeholder="Ingrese el captcha." />
+        <button class="btn btn-dark" onclick="checkCaptcha()"> Verificar </button>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+        function checkCaptcha() {
+            var captchaText = "@ViewBag.captchaText";
+            var userText = document.getElementById("userText").value;
+            if (captchaText === userText) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Éxito.',
+                    text: 'El texto ingresado es correcto.'
+                })
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'El texto ingresado no coincide.'                  
+                })
+            }
+        }
+    </script>
+}

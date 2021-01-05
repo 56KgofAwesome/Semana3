@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DebuggerVisualizers, Version=1.0.0.27895, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageDebugger.1.0.0\lib\net45\DebuggerVisualizers.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -142,6 +145,8 @@
     <Compile Include="Areas\Ejercicio7\Controllers\HomeController.cs" />
     <Compile Include="Areas\Ejercicio7\Ejercicio7AreaRegistration.cs" />
     <Compile Include="Areas\Ejercicio7\Models\Usuario.cs" />
+    <Compile Include="Areas\Ejercicio8\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Ejercicio8\Ejercicio8AreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -368,6 +373,8 @@
     <Content Include="Areas\Ejercicio7\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Ejercicio7\Views\Home\Login.cshtml" />
     <Content Include="Areas\Ejercicio7\Views\Home\Settings.cshtml" />
+    <Content Include="Areas\Ejercicio8\Views\web.config" />
+    <Content Include="Areas\Ejercicio8\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -585,6 +592,8 @@
     <Folder Include="Areas\Ejercicio5\Data\" />
     <Folder Include="Areas\Ejercicio6\Data\" />
     <Folder Include="Areas\Ejercicio7\Data\" />
+    <Folder Include="Areas\Ejercicio8\Data\" />
+    <Folder Include="Areas\Ejercicio8\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

@@ -40,7 +40,7 @@
     </div>
 </div>
 @section Scripts{
-    <script>
+    <script>        
         //Date Picker
         $('#searchByDate').datepicker({
             format: 'dd-mm-yyyy'            
@@ -48,7 +48,7 @@
         //Tabla de Agenda
         $(document).ready(function () {
             allRegisterRequest();
-        });
+        });        
          //Solicitud de Registros de Agenda
         function allRegisterRequest() {
             $.ajax({
@@ -61,7 +61,7 @@
                         var tr;
                         tr = $('<tr/>');
                         //Recorremos el objeto para agregar a la tabla
-                        Object.entries(activityObject).forEach(entry => {
+                        Object.entries(activityObject).forEach(entry => {                            
                             const [key, value] = entry;
                             if (key == "activityPeriod") {
                                 if (value == "60")
@@ -101,6 +101,7 @@
                             clearTable();
                             //Recorremos el objeto para agregar a la tabla
                             Object.entries(activityObject).forEach(entry => {
+                                
                                 const [key, value] = entry;
                                 if (key == "activityPeriod") {
                                     if (value == "60") {
@@ -113,13 +114,9 @@
                                 }
                             });
                             $('table').append(tr);
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'No tienes actividades agendadas.',
-                            })
-                        }
+                        } else { 
+                            
+                        }                           
                     });
                 }
             });
@@ -128,14 +125,12 @@
         function searchByDate(){
             inputSearch = document.getElementById("searchByDate").value;
             if (inputSearch == undefined || inputSearch == null || inputSearch == "")
-            {   
-                console.log("No debería buscar nada" + inputSearch);
+            {                   
                 clearTable();
                 allRegisterRequest();
             }
             else
             {   
-                console.log("Vamos a buscar");
                 filteredSearch();
             }
         }
