@@ -147,6 +147,8 @@
     <Compile Include="Areas\Ejercicio7\Models\Usuario.cs" />
     <Compile Include="Areas\Ejercicio8\Controllers\HomeController.cs" />
     <Compile Include="Areas\Ejercicio8\Ejercicio8AreaRegistration.cs" />
+    <Compile Include="Areas\Ejercicio9\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Ejercicio9\Ejercicio9AreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -375,6 +377,8 @@
     <Content Include="Areas\Ejercicio7\Views\Home\Settings.cshtml" />
     <Content Include="Areas\Ejercicio8\Views\web.config" />
     <Content Include="Areas\Ejercicio8\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Ejercicio9\Views\web.config" />
+    <Content Include="Areas\Ejercicio9\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -594,6 +598,8 @@
     <Folder Include="Areas\Ejercicio7\Data\" />
     <Folder Include="Areas\Ejercicio8\Data\" />
     <Folder Include="Areas\Ejercicio8\Views\Shared\" />
+    <Folder Include="Areas\Ejercicio9\Data\" />
+    <Folder Include="Areas\Ejercicio9\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
