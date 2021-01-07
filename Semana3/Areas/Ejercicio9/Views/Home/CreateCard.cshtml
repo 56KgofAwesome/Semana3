@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "CreateCard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row row-cols-2">
+        <div class="col-6">
+            <div class="row">
+                <h5>NOMBRE</h5>
+            </div>
+            <div class="row">
+                <p>@ViewBag.name</p>
+            </div>
+            <div class="row">
+                <h5>DIRECCIÓN</h5>
+            </div>
+            <div class="row">
+                <p>@ViewBag.addressOne</p>
+            </div>
+            <div class="row">
+                <p>@ViewBag.addressTwo</p>
+            </div>
+        </div>
+        <div class="col-6">
+            <img width="300" height="300" src="@ViewBag.src" alt="Imagen"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <h5> INFORMACIÓN </h5>
+            </div>
+            <div class="row">
+                <p>Correo: @ViewBag.email</p>                
+            </div>
+            <div class="row"> 
+                <p>Teléfono: @ViewBag.phoneNumber</p>
+            </div>
+        </div>                
+    </div>
+</div>
+

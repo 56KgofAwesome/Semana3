@@ -149,6 +149,7 @@
     <Compile Include="Areas\Ejercicio8\Ejercicio8AreaRegistration.cs" />
     <Compile Include="Areas\Ejercicio9\Controllers\HomeController.cs" />
     <Compile Include="Areas\Ejercicio9\Ejercicio9AreaRegistration.cs" />
+    <Compile Include="Areas\Ejercicio9\Models\Card.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -156,6 +157,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Ejercicio9\Images\Casual\casual1.jpg" />
+    <Content Include="Areas\Ejercicio9\Images\Casual\casual2.jpg" />
+    <Content Include="Areas\Ejercicio9\Images\Casual\casual3.jpg" />
+    <Content Include="Areas\Ejercicio9\Images\Enterprise\enterprise1.jpg" />
+    <Content Include="Areas\Ejercicio9\Images\Enterprise\enterprise2.jpg" />
+    <Content Include="Areas\Ejercicio9\Images\Enterprise\enterprise3.jpg" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap-datepicker.standalone.css" />
@@ -247,6 +254,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Casual\casual1.jpg" />
+    <Content Include="Images\Casual\casual2.jpg" />
+    <Content Include="Images\Casual\casual3.jpg" />
+    <Content Include="Images\Enterprise\enterprise1.jpg" />
+    <Content Include="Images\Enterprise\enterprise2.jpg" />
+    <Content Include="Images\Enterprise\enterprise3.jpg" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
@@ -379,6 +392,8 @@
     <Content Include="Areas\Ejercicio8\Views\Home\Index.cshtml" />
     <Content Include="Areas\Ejercicio9\Views\web.config" />
     <Content Include="Areas\Ejercicio9\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Ejercicio9\Views\Home\Create.cshtml" />
+    <Content Include="Areas\Ejercicio9\Views\Home\CreateCard.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
